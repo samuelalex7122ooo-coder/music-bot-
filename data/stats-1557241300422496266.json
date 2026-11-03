@@ -1,0 +1,19 @@
+{
+  "total": 2,
+  "users": [
+    {
+      "userId": "1444376485862445056",
+      "roleId": "1564055095266517102",
+      "channelId": "1557241301639102546",
+      "timestamp": 1793674328,
+      "localTime": "lunes, 2 de noviembre de 2026, 8:52:08 p. m. GMT-6"
+    },
+    {
+      "userId": "1444376485862445056",
+      "roleId": "1564055095266517102",
+      "channelId": "1557241301639102546",
+      "timestamp": 1793676105,
+      "localTime": "lunes, 2 de noviembre de 2026, 9:21:45 p. m. GMT-6"
+    }
+  ]
+}
