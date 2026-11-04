@@ -54,5 +54,52 @@ module.exports = [
     .addStringOption(o => o.setName("descripcion").setDescription("Descripción").setMaxLength(4000).setRequired(true))
     .addStringOption(o => o.setName("color").setDescription("Color hexadecimal"))
     .addStringOption(o => o.setName("imagen").setDescription("URL de imagen"))
+,
+  new SlashCommandBuilder()
+    .setName("configurar-bienvenida")
+    .setDescription("Configurar las bienvenidas automáticas")
+    .setDefaultMemberPermissions(admin)
+    .addChannelOption(o => o.setName("canal").setDescription("Canal de bienvenida").addChannelTypes(ChannelType.GuildText).setRequired(true))
+    .addStringOption(o => o.setName("titulo").setDescription("Título del embed").setMaxLength(256))
+    .addStringOption(o => o.setName("mensaje").setDescription("Usa {user}, {server} y {count}").setMaxLength(1800))
+    .addStringOption(o => o.setName("color").setDescription("Color hexadecimal, ejemplo #8A2BE2")),
+
+  new SlashCommandBuilder()
+    .setName("ticket-configurar")
+    .setDescription("Configurar los canales del sistema de tickets")
+    .setDefaultMemberPermissions(admin)
+    .addChannelOption(o => o.setName("canal-panel").setDescription("Canal donde se publicará el panel").addChannelTypes(ChannelType.GuildText).setRequired(true))
+    .addChannelOption(o => o.setName("canal-logs").setDescription("Canal de registros de tickets").addChannelTypes(ChannelType.GuildText).setRequired(true)),
+
+  new SlashCommandBuilder()
+    .setName("ticket-categoria-crear")
+    .setDescription("Crear una categoría editable de tickets")
+    .setDefaultMemberPermissions(admin)
+    .addStringOption(o => o.setName("nombre").setDescription("Nombre de la categoría").setMaxLength(80).setRequired(true))
+    .addStringOption(o => o.setName("emoji").setDescription("Emoji de la categoría").setMaxLength(50))
+    .addStringOption(o => o.setName("descripcion").setDescription("Descripción que verá el usuario").setMaxLength(100))
+    .addRoleOption(o => o.setName("rol").setDescription("Rol que atenderá esta categoría")),
+
+  new SlashCommandBuilder()
+    .setName("ticket-categoria-editar")
+    .setDescription("Editar una categoría de tickets")
+    .setDefaultMemberPermissions(admin)
+    .addStringOption(o => o.setName("categoria").setDescription("Nombre actual de la categoría").setMaxLength(80).setRequired(true))
+    .addStringOption(o => o.setName("nombre").setDescription("Nuevo nombre").setMaxLength(80))
+    .addStringOption(o => o.setName("emoji").setDescription("Nuevo emoji").setMaxLength(50))
+    .addStringOption(o => o.setName("descripcion").setDescription("Nueva descripción").setMaxLength(100))
+    .addRoleOption(o => o.setName("rol").setDescription("Nuevo rol de atención")),
+
+  new SlashCommandBuilder()
+    .setName("ticket-categoria-eliminar")
+    .setDescription("Eliminar una categoría de tickets")
+    .setDefaultMemberPermissions(admin)
+    .addStringOption(o => o.setName("categoria").setDescription("Nombre de la categoría").setMaxLength(80).setRequired(true)),
+
+  new SlashCommandBuilder()
+    .setName("ticket-panel")
+    .setDescription("Publicar o actualizar el panel de tickets")
+    .setDefaultMemberPermissions(admin),
 ].map(c => c.toJSON());
+
 

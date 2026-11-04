@@ -1,4 +1,5 @@
 ﻿const musicCity = require("./music");
+const community = require("./community");
 require("dotenv").config();
 
 const fs = require("fs");
@@ -122,6 +123,7 @@ function panelButton(config) {
 }
 
 client.once("ready", () => {
+  community.init(client);
   console.log("----------------------------------");
   console.log(`MUSIC CITY conectado: ${client.user.tag}`);
   console.log("Verificación y logs activados.");
@@ -468,5 +470,6 @@ if (!process.env.DISCORD_TOKEN) {
 
 musicCity.init(client);
 client.login(process.env.DISCORD_TOKEN);
+
 
 
