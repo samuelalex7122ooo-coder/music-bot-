@@ -228,12 +228,20 @@ client.on("interactionCreate", async interaction => {
 
     if (!interaction.isChatInputCommand()) return;
 
-    if (!interaction.memberPermissions?.has(PermissionsBitField.Flags.ManageGuild)) {
-      return interaction.reply({
-        content: "❌ Necesitas el permiso Administrar servidor.",
-        ephemeral: true
-      });
-    }
+    const publicMusicCommands = new Set([
+  "play", "skip", "pause", "resume", "queue",
+  "volume", "stop", "nowplaying", "leave"
+]);
+
+if (
+  !publicMusicCommands.has(interaction.commandName) &&
+  !interaction.memberPermissions?.has(PermissionsBitField.Flags.ManageGuild)
+) {
+  return interaction.reply({
+    content: "❌ Necesitas el permiso Administrar servidor.",
+    ephemeral: true
+  });
+}
 
     const command = interaction.commandName;
 
@@ -472,6 +480,7 @@ if (!process.env.DISCORD_TOKEN) {
 
 musicCity.init(client);
 client.login(process.env.DISCORD_TOKEN);
+
 
 
 
