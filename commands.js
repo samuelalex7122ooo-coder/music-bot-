@@ -1,5 +1,4 @@
 ﻿const { SlashCommandBuilder, PermissionFlagsBits, ChannelType } = require("discord.js");
-
 const admin = PermissionFlagsBits.ManageGuild;
 
 module.exports = [
@@ -33,6 +32,7 @@ module.exports = [
     .setDescription("Configurar el canal de logs generales")
     .setDefaultMemberPermissions(admin)
     .addChannelOption(o => o.setName("canal").setDescription("Canal de logs generales").addChannelTypes(ChannelType.GuildText).setRequired(true)),
+
   new SlashCommandBuilder()
     .setName("logs")
     .setDescription("Consultar los registros")
@@ -53,8 +53,8 @@ module.exports = [
     .addStringOption(o => o.setName("titulo").setDescription("Título").setMaxLength(256).setRequired(true))
     .addStringOption(o => o.setName("descripcion").setDescription("Descripción").setMaxLength(4000).setRequired(true))
     .addStringOption(o => o.setName("color").setDescription("Color hexadecimal"))
-    .addStringOption(o => o.setName("imagen").setDescription("URL de imagen"))
-,
+    .addStringOption(o => o.setName("imagen").setDescription("URL de imagen")),
+
   new SlashCommandBuilder()
     .setName("configurar-bienvenida")
     .setDescription("Configurar las bienvenidas automáticas")
@@ -100,6 +100,43 @@ module.exports = [
     .setName("ticket-panel")
     .setDescription("Publicar o actualizar el panel de tickets")
     .setDefaultMemberPermissions(admin),
-].map(c => c.toJSON());
 
+  // Comandos de música que ya tienen controlador en music.js
+  new SlashCommandBuilder()
+    .setName("play")
+    .setDescription("Reproducir una canción de YouTube")
+    .addStringOption(o => o.setName("enlace").setDescription("Enlace HTTPS de YouTube").setRequired(true)),
 
+  new SlashCommandBuilder()
+    .setName("skip")
+    .setDescription("Saltar la canción actual"),
+
+  new SlashCommandBuilder()
+    .setName("pause")
+    .setDescription("Pausar la reproducción"),
+
+  new SlashCommandBuilder()
+    .setName("resume")
+    .setDescription("Reanudar la reproducción"),
+
+  new SlashCommandBuilder()
+    .setName("stop")
+    .setDescription("Detener la reproducción"),
+
+  new SlashCommandBuilder()
+    .setName("queue")
+    .setDescription("Mostrar la cola musical"),
+
+  new SlashCommandBuilder()
+    .setName("nowplaying")
+    .setDescription("Mostrar la canción actual"),
+
+  new SlashCommandBuilder()
+    .setName("leave")
+    .setDescription("Desconectar el bot del canal de voz"),
+
+  new SlashCommandBuilder()
+    .setName("volume")
+    .setDescription("Cambiar el volumen de la música")
+    .addIntegerOption(o => o.setName("nivel").setDescription("Volumen entre 0 y 100").setMinValue(0).setMaxValue(100).setRequired(true))
+].map(command => command.toJSON());

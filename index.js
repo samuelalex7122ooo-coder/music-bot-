@@ -134,6 +134,8 @@ client.once("ready", () => {
 // VERIFICACIONES
 client.on("interactionCreate", async interaction => {
   try {
+    if (await community.handleInteraction(interaction)) return;
+    if (interaction.isChatInputCommand() && await community.handleCommand(interaction)) return;
     if (interaction.isButton() && interaction.customId === "music_verify") {
       const config = getConfig(interaction.guildId);
 
@@ -470,6 +472,7 @@ if (!process.env.DISCORD_TOKEN) {
 
 musicCity.init(client);
 client.login(process.env.DISCORD_TOKEN);
+
 
 
 
